@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stale While Revalidate</title>
+</head>
+<body>
+  Welcome to SW 101 Blog!
+
+  <ul>
+    <li><a href="a.html">a.html</a></li>
+    <li><a href="b.html">b.html</a></li>
+    <li><a href="c.html">c.html</a></li>
+  </ul>
+
+  <script type="text/javascript">
+    if(navigator.serviceWorker){
+      navigator.serviceWorker
+        .register('./sw.js')
+        .then((registration) => {console.log('Service Worker Registered. ', registration)})
+        .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
+    }
+  </script>
+</body>
+</html>

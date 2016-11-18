@@ -1,0 +1,10 @@
+{
+  "name": "sw-101",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "py2-start": "python -m SimpleHTTPServer 8101",
+    "start": "python3 -m http.server 8101"
+  }
+}
