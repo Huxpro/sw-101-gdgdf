@@ -25,6 +25,20 @@ self.onactivate = (e) => {
   //e.waitUntil(clients.claim())
 }
 
+function cacheFirst(e, cached, fetched, fallback){
+  e.respondWith(
+    cached.then(res => res || fetched).catch(_ => fallback)
+  )
+}
+
+function fastest(e, cached, fetched, fallback){
+  e.respondWith(
+    Promise.race([fetched.catch(_ => cached), cached])
+      .then(resp => resp || fetched)
+      .catch(_ => fallback)
+  )
+}
+
 self.onfetch = (e) => {
   const cached = caches.match(e.request)
   const fallback = caches.match('offline.html')
@@ -32,19 +46,13 @@ self.onfetch = (e) => {
   const fetched = fetch(`${e.request.url}?${Date.now()}`)
   const fetchedCopy = fetched.then(_ => _.clone())
 
-  // Race for fullfilled one with fallback
-  // e.respondWith(
-  //   Promise.race([fetched.catch(_ => cached), cached])
-  //     .then(resp => resp || fetched)
-  //     .catch(_ => fallback)
-  // )
-
   // Cache First with fallback
-    e.respondWith(
-      cached.then(res => res || fetched).catch(_ => fallback)
-    )
+  //cacheFirst(e, cached, fetched, fallback)
 
-  // revalidate
+  // or a better one: fastest, let network and cache race
+  fastest(e, cached, fetched, fallback)
+
+  // revalidate part
   e.waitUntil(
     Promise.all([fetchedCopy, caches.open('runtime')])
       .then(([resp, cache]) => resp.ok && cache.put(e.request, resp))
