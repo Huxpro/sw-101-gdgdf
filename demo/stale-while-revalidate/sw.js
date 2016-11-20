@@ -32,7 +32,7 @@ self.onfetch = (e) => {
   const fetched = fetch(`${e.request.url}?${Date.now()}`)
   const fetchedCopy = fetched.then(_ => _.clone())
 
-  // Race
+  // Race for fullfilled one with fallback
   e.respondWith(
     Promise.race([fetched.catch(_ => cached), cached])
       .then(resp => resp || fetched)

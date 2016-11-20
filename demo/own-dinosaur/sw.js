@@ -9,7 +9,7 @@
 
 self.oninstall = (e) => {
   e.waitUntil(
-    caches.open('precache')
+    caches.open('installation')
       .then( cache => cache.addAll([
         './offline.html',
         './own-dinosaur.jpg'
@@ -24,7 +24,15 @@ self.onactivate = (e) => {
 }
 
 self.onfetch = (e) => {
+  // Chrome would disk-cache any response with no "cache-control",
+  // which broke the assumption that we would fetch index.html failed
+  // and fallback to cache
+  // So we have to do forced cache-busting with date-stamp query.
+  const fetched = fetch(`${e.request.url}?${Date.now()}`)
+  const cached = caches.match(e.request)
+  const sorry = caches.match('offline.html')
+
   e.respondWith(
-    fetch(e.request).catch(_ => caches.match('offline.html'))
+    fetched.catch(_ => cached).then(res => res || sorry)
   )
 }
