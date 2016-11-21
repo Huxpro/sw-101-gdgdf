@@ -25,5 +25,5 @@ This slides is powered by [Yanshuo.io (演说.io)](http://yanshuo.io), a online 
 
 ### License
 
-MIT  
+BSD
 Copyright (c) 2016 Hux
