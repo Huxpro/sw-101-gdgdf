@@ -49,7 +49,7 @@ It covers techniques below, but in a step-by-step order:
 
 This slides is powered by [Yanshuo.io (演说.io)](http://yanshuo.io), a online software helping you create, store and share web slides. 
 
-There are 2 ways that you can fork or contribute this project:
+There are 2 ways that you can fork or contribute to this project:
 
 1. `index.html` is the HTML source code exported from [Yanshuo.io](http://yanshuo.io), and many of its dependencis (js, css, fonts) are still linked to CDN of [Yanshuo.io](http://yanshuo.io). You can do any secondary development and host it by yourself.
 2. Download the project file under `shuo/`, drag it into [Yanshuo.io](http://yanshuo.io), and you are ready to go. You can edit whatever you want, upload it to your account, and even share your distributions.
