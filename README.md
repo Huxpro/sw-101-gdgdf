@@ -2,9 +2,9 @@
 
 ### Working Offline and Instant Loading (@GDG DevFest 2016)
 
-### [Watch Slides → ](https://huangxuan.me/sw-101-gdgdf/)
+### [Watch Slides → ](https://huxpro.github.io/sw-101-gdgdf/)
 
-<img src="https://huangxuan.me/sw-101-gdgdf/attach/qrcode.png" width="350" />
+<img src="https://huxpro.github.io/sw-101-gdgdf/attach/qrcode.png" width="350" />
 
 ### What is in `code/`
 
